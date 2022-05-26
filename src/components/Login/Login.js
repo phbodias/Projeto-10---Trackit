@@ -1,16 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-// import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-
 
 import logo from '../../assets/logo.png'
 import { Container, Input, Button, StyledLink } from './LoginStyle';
 
 export default function Login(){
     const { setDados } = useContext(UserContext);
-    // const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
