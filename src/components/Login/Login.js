@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-//import { useNavigate } from "react-router";
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import logo from '../../assets/logo.png'
 import { Container, Input, Button, StyledLink } from './LoginStyle';
 
 export default function Login(){
-    const { setDados } = useContext(UserContext);
-    //const navigate = useNavigate();
+
+    const { setToken, setImage } = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -25,12 +26,12 @@ export default function Login(){
             }
         );
     
-        /* promise.then((response) => {
-            setUser(response.data);
+        promise.then((response) => {
             setToken(response.data.token);
+            setImage(response.data.image);
             navigate("/habitos");
         });
-        promise.catch((error) => console.log(error.response)); */
+        promise.catch((error) => alert(`Erro ao cadastrar: \n\n${error.response.status} - ${error.response.data.message}`)); 
     }
 
     return (
@@ -41,12 +42,14 @@ export default function Login(){
                     type="email"
                     placeholder="Digite seu email..."
                     value={email}
+                    name={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                     type="password"
                     placeholder="Digite sua senha..."
                     value={password}
+                    name={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button type="submit">Entrar</Button>

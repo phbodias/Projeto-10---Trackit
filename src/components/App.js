@@ -10,15 +10,11 @@ import Historico from "./Historico/Historico";
 
 export default function App(){
 
-    const [dados, setDados] = useState([{
-        email: "",
-        name: "",
-        image: "",
-        password: ""
-    }]);
+    const [token, setToken] = useState("");
+    const [image, setImage] = useState("");
 
     return (
-        <UserContext.Provider value={{dados, setDados}}>
+        <UserContext.Provider value={{ token, setToken, image, setImage }}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />} />
