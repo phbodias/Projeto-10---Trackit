@@ -14,21 +14,21 @@ export default function Header() {
 }
 
 const Style = styled.div`
-    position: absolute;
+    position: fixed;
     width: 100vw;
+    min-width: 400px;
     height: 70px;
     left: 0px;
     top: 0px;
     background: #126BA5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
+    align-items: center;
+    justify-content: center;
 
     p{
-        position: absolute;
         width: 97px;
         height: 49px;
-        left: 18px;
-        top: 10px;
         color: #FFFFFF;
         font-family: 'Playball';
         font-style: normal;
@@ -38,11 +38,9 @@ const Style = styled.div`
     }
 
     img{
-        position: absolute;
         width: 51px;
         height: 51px;
-        right: 18px;
-        top: 9px;
+        margin-left: 51%;
         border-radius: 98.5px;
         object-fit: cover;
     }
