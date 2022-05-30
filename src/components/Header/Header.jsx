@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
+import { Link } from "react-router-dom";
 
 export default function Header() {
     const { image } = useContext(UserContext);
 
     return(
-        <Style>
-            <p>TrackIt</p>
-            <img src={image} alt="profileImage"/>
-        </Style>
+        <Link to="/">
+            <Style>
+                <p>TrackIt</p>
+                <img src={image} alt="profileImage"/>
+            </Style>
+        </Link>
     )
 }
 
 const Style = styled.div`
+    z-index: 1;
     position: fixed;
     width: 100vw;
     min-width: 400px;
@@ -37,7 +41,7 @@ const Style = styled.div`
         line-height: 49px;
     }
 
-    img{
+    img {
         width: 51px;
         height: 51px;
         margin-left: 51%;

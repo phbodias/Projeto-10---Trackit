@@ -1,5 +1,35 @@
 import styled from 'styled-components';
 
+const Hab = styled.div`
+    margin-bottom: 126px;
+`
+
+const Habito = styled.div`
+    width: 340px;
+    min-height: 91px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+
+    p {
+        max-width: 260px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19.976px;
+        line-height: 25px;
+        margin: 13px 19px 8px 19px;
+        color: #666666;
+        word-wrap: break-word;
+    }
+
+    span {
+        position: relative;
+        left: 300px;
+        top: -27px;
+    }
+`
+
 const Meus = styled.div`
     display: flex;
     justify-content: space-evenly;
@@ -10,7 +40,6 @@ const Meus = styled.div`
     p:first-child{
         width: 148px;
         height: 29px;
-        font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
         font-size: 22.976px;
@@ -24,7 +53,6 @@ const Meus = styled.div`
         margin-left: 44%;
         background: #52B6FF;
         border-radius: 4.63636px;
-        font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
         font-size: 26.976px;
@@ -40,8 +68,8 @@ const Buttons = styled.div`
     line-height: 20px;
     text-align: center;
     font-weight: 400;
-    font-family: 'Lexend Deca';
     font-style: normal;
+    box-sizing: border-box;
 
     button:first-child{
         width: 69px;
@@ -69,7 +97,6 @@ const Day = styled.div`
     border: 1px solid #D5D5D5;
     border-radius: 5px;
     margin-right: 4px;
-    font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 19.976px;
@@ -99,7 +126,6 @@ const NewHabit = styled.div`
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
-        font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
         font-size: 19.976px;
@@ -117,7 +143,6 @@ const NoHabits = styled.div`
     height: 74px;
     left: 17px;
     margin-top: 28px;
-    font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 17.976px;
@@ -127,11 +152,13 @@ const NoHabits = styled.div`
 
 const Content = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     background-color: #E5E5E5;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Lexend Deca';
 `
 
 
@@ -142,5 +169,7 @@ export {
     Day,
     NewHabit,
     NoHabits,
-    Content
+    Content,
+    Hab,
+    Habito
 }

@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const Input = styled.input`
   padding: 18px;
-  background-color: #ffffff;
+  background-color: ${({desabilitado}) => desabilitado ? '#f2f2f2' : '#ffffff'};
   border: 1px solid #bebebe;
   color: #222222;
   width: 100%;

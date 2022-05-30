@@ -1,19 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { ThreeDots } from 'react-loader-spinner'
 
-import logo from '../../assets/logo.png'
 import Header from '../Header/Header';
-import styled from 'styled-components';
-import { Buttons, Content, Day, Days, Meus, NewHabit, NoHabits } from './HabitosStyle';
+import { Buttons, Content, Day, Days, Hab, Habito, Meus, NewHabit, NoHabits } from './HabitosStyle';
+import Footer from '../Footer/Footer';
 
 export default function Habitos(){
+    const navigate = useNavigate();
 
     const { token } = useContext(UserContext);
 
     const [addHabit, setAddHabit] = useState(false);
 
+    const [loading, setLoading] = useState(false)
+    
     const [selected, setSelected] = useState([false, false, false, false, false, false, false]);
  
     const [habitos, setHabitos] = useState([]);
@@ -23,19 +26,27 @@ export default function Habitos(){
     const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
     useEffect(() => {
+        pegarHabitos();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [habitos]);
+
+    function pegarHabitos() {
         const promise = axios.get(
-        "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
-        {
-            headers: {
-            Authorization: `Bearer ${token}`
+            "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
+            {
+                headers: {
+                Authorization: `Bearer ${token}`
+                }
             }
-        }
         );
         promise.then((response) => {
             setHabitos(response.data)
         });
-        promise.catch((error) => console.log("ruim", error.response));
-    }, []);
+        promise.catch((error) => {
+            alert(`Erro ao cadastrar: \n\n${error.response.status} - ${error.response.data.message}`);
+            navigate('/');
+        }); 
+    }
     
     function selecionarDias(index){
         setSelected(selected.map((s, i) => (
@@ -44,7 +55,9 @@ export default function Habitos(){
     }
 
     function novoHabito(){
+        setLoading(true);
         const days = [];
+        
         for (let i = 0; i<selected.length; i++){
             if (selected[i]) days.push(i);
         }
@@ -52,7 +65,41 @@ export default function Habitos(){
             name: name,
             days: days
         }
-        console.log(novo);
+        const promise = axios.post(
+            `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, 
+            novo, 
+            {
+                headers: {
+                Authorization: `Bearer ${token}`
+                }
+            }
+        )
+        promise.then((response) => {
+            setName('');
+            setSelected([false, false, false, false, false, false, false]);
+            setAddHabit(!addHabit);
+            setLoading(false);
+        })
+        promise.catch(res => {
+            alert(`Oops! algo deu errado...${res.response.data.message}`);
+            setLoading(false);
+        })
+
+    }
+
+    function diaDeTarefa(dias, index){
+        if  (dias.includes(index)) return true;
+        return false;
+    }
+    
+    function deletarHabito(id){
+        if (window.confirm('Deseja deletar este habito ?')) {
+            axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        }
     }
 
     return (
@@ -74,19 +121,38 @@ export default function Habitos(){
                     </Days>
                     <Buttons>
                         <button onClick={() => setAddHabit(!addHabit)}>Cancelar</button>
-                        <button onClick={novoHabito}> Salvar </button>
+                        <button onClick={novoHabito}>
+                            {loading ? <ThreeDots color="#FFF" height={30} width={30} /> : 'Salvar'}
+                        </button>
                     </Buttons>
                 </NewHabit>
             ) : ""}
             {habitos.length === 0 ? (
                 <NoHabits>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</NoHabits>
             ) : (
-                <div>AAAAAAAAAAAAA</div>
+                <Hab>
+                    {habitos.map((habito, index) => {
+                        return (
+                            <Habito key={index}>
+                                <p>{habito.name}</p>
+                                <span onClick={() => deletarHabito(habito.id)}><ion-icon name="trash-outline"></ion-icon></span>
+                                <Days>
+                                    {weekdays.map((day, indexW) => {
+                                        const valor = diaDeTarefa(habito.days, indexW);
+                                        return (
+                                            <Day key={indexW} value={valor}>{day}</Day>
+                                        )
+                                    })}
+                                </Days>
+                            </Habito>
+                        )
+                    })}
+                </Hab>
             )} 
+            < Footer />
         </Content>
     )
 }
-
 
 
 
