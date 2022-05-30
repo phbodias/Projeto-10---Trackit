@@ -2,12 +2,12 @@ import { useState, useEffect, useContext } from "react"
 import UserContext from '../../contexts/UserContext';
 import ProgressContext from '../../contexts/ProgressContext';
 import axios from "axios"
-import styled from 'styled-components';
 import dayjs from "dayjs"
 import Header from "../Header/Header"
 import { Content } from "../Habitos/HabitosStyle"
 import Footer from "../Footer/Footer";
 import { useNavigate } from 'react-router-dom';
+import { Check, Data, Porcentagem, Sequencia, Tarefa, Tarefas, Texto } from "./HojeStyle";
 
 
 export default function Hoje(){
@@ -75,7 +75,7 @@ export default function Hoje(){
             <Header />
             <Data>
                 <p>{dia}, {dayjs().format('DD/MM')}</p>
-                {progresso === "0" || habitosDoDia.length === 0 ? <h1>Nenhum hábito concluído ainda</h1> : <h1>{progresso}% dos hábitos concluídos</h1>}
+                {progresso === "0" || habitosDoDia.length === 0 ? <Porcentagem cor={false}>Nenhum hábito concluído ainda</Porcentagem> : <Porcentagem cor={true}>{progresso}% dos hábitos concluídos</Porcentagem>}
             </Data>
             <Tarefas>
                 {habitosDoDia.map((habito, index) => {
@@ -98,81 +98,3 @@ export default function Hoje(){
     )
 }
 
-const Sequencia = styled.div`
-    width: 170px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12.976px;
-    line-height: 16px;
-    color: #666666;
-    margin-left: 19px;
-
-    span {
-        color: ${({ value }) => value ? '#8FC549' : '#666666'};
-    }
-`
-
-const Tarefas = styled.div`
-    margin-bottom: 126px;
-`
-
-const Check = styled.div`
-    top: 10px;
-    position: relative;
-    font-size: 69px;
-    color: ${props => props.value ? `#8FC549` : `#E7E7E7`};
-    border-radius: 5px;
-`
-
-const Texto = styled.div`
-    p {
-        width: 208px;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 19.976px;
-        line-height: 25px;
-        margin: 13px 19px 8px 19px;
-        color: #666666;
-        word-wrap: break-word;
-    }
-`
-
-const Tarefa = styled.div`
-    width: 340px;
-    height: 91px;
-    background: #FFFFFF;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    display: flex;
-`
-
-const Data = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: initial;
-    width: 91%;
-    margin-top: 98px;
-    margin-bottom: 28px;
-
-    p {
-        width: 200px;
-        height: 29px;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22.976px;
-        line-height: 29px;
-        color: #126BA5;
-    }
-
-    h1 {
-        width: 278px;
-        height: 22px;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 17.976px;
-        line-height: 22px;
-        color: #BABABA;
-    }
-`

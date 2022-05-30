@@ -1,5 +1,30 @@
 import styled from 'styled-components';
 
+const Texto = styled.div`
+    padding-top: 5px;
+    padding-bottom: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    margin-bottom: 5px;
+
+    p {
+        max-width: 260px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19.976px;
+        line-height: 25px;
+        color: #666666;
+        word-wrap: break-word;
+    }
+
+    span {
+        position: relative;
+        font-size: 20px;
+    }
+`
+
 const Hab = styled.div`
     margin-bottom: 126px;
 `
@@ -11,23 +36,10 @@ const Habito = styled.div`
     border-radius: 5px;
     box-sizing: border-box;
     margin-bottom: 10px;
-
-    p {
-        max-width: 260px;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 19.976px;
-        line-height: 25px;
-        margin: 13px 19px 8px 19px;
-        color: #666666;
-        word-wrap: break-word;
-    }
-
-    span {
-        position: relative;
-        left: 300px;
-        top: -27px;
-    }
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `
 
 const Meus = styled.div`
@@ -36,6 +48,7 @@ const Meus = styled.div`
     align-items: center;
     width: 91%;
     margin-top: 98px;
+    margin-bottom: 20px;
 
     p:first-child{
         width: 148px;
@@ -61,14 +74,16 @@ const Meus = styled.div`
     }
 `
 const Buttons = styled.div`
-    margin-top: 29px;
+    margin-top: 25px;
     margin-left: 148px;
-    font-size: 15.976px;
+    font-size: 16px;
     line-height: 20px;
-    text-align: center;
     font-weight: 400;
     font-style: normal;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     button:first-child{
         width: 69px;
@@ -82,10 +97,13 @@ const Buttons = styled.div`
     button:last-child{
         width: 84px;
         height: 35px;
-        background: #52B6FF;
+        background-color: #52B6FF;
         border-radius: 4.6px;
         color: #FFFFFF;
         border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `
 
@@ -105,7 +123,6 @@ const Day = styled.div`
 
 const Days= styled.div`
     display: flex;
-    margin-left: 19px;
     text-align: center;
 `
 
@@ -115,14 +132,18 @@ const NewHabit = styled.div`
     background: #FFFFFF;
     border-radius: 5px;
     margin-top: 20px;
+    margin-bottom: 29px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 19px;
     
     input {
         box-sizing: border-box;
-        margin: 18.5px;
         padding-left: 11px;
         width: 303px;
         height: 45px;
-        background: #FFFFFF;
+        background: ${({ desabilitado }) => desabilitado ? '#8FC549' : '#FFFFFF'};
         border: 1px solid #D5D5D5;
         border-radius: 5px;
         font-style: normal;
@@ -130,6 +151,7 @@ const NewHabit = styled.div`
         font-size: 19.976px;
         line-height: 25px;
         color: #666666;
+        margin-bottom: 8px;
     }
 
     input::-webkit-input-placeholder{
@@ -170,5 +192,6 @@ export {
     NoHabits,
     Content,
     Hab,
-    Habito
+    Habito, 
+    Texto
 }

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner'
 
 import Header from '../Header/Header';
-import { Buttons, Content, Day, Days, Hab, Habito, Meus, NewHabit, NoHabits } from './HabitosStyle';
+import { Buttons, Content, Day, Days, Hab, Habito, Meus, NewHabit, NoHabits, Texto } from './HabitosStyle';
 import Footer from '../Footer/Footer';
 
 export default function Habitos(){
@@ -43,7 +43,7 @@ export default function Habitos(){
             setHabitos(response.data)
         });
         promise.catch((error) => {
-            alert(`Erro ao cadastrar: \n\n${error.response.status} - ${error.response.data.message}`);
+            alert(`Erro ao carregar hábitos: \n\n${error.response.status} - ${error.response.data.message}`);
             navigate('/');
         }); 
     }
@@ -61,6 +61,13 @@ export default function Habitos(){
         for (let i = 0; i<selected.length; i++){
             if (selected[i]) days.push(i);
         }
+
+        if (days.length === 0){
+            alert("Selecione ao menos um dia para a tarefa!")
+            setLoading(false);
+            return;
+        }
+
         const novo = {
             name: name,
             days: days
@@ -81,7 +88,7 @@ export default function Habitos(){
             setLoading(false);
         })
         promise.catch(res => {
-            alert(`Oops! algo deu errado...${res.response.data.message}`);
+            alert(`Algo deu errado...${res.response.data.message}`);
             setLoading(false);
         })
 
@@ -111,7 +118,7 @@ export default function Habitos(){
             </Meus>
             {addHabit ? (
                 <NewHabit>
-                    <input type="text" placeholder="nome do habito" value={name} onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" placeholder="nome do habito" value={name} onChange={(e) => setName(e.target.value)} desabilitado={loading}/>
                     <Days>
                         {weekdays.map((day, index) => {
                             return (
@@ -120,7 +127,7 @@ export default function Habitos(){
                         })}
                     </Days>
                     <Buttons>
-                        <button onClick={() => setAddHabit(!addHabit)}>Cancelar</button>
+                        <button onClick={() => setAddHabit(!addHabit)} desabilitado={loading}>Cancelar</button>
                         <button onClick={novoHabito}>
                             {loading ? <ThreeDots color="#FFF" height={30} width={30} /> : 'Salvar'}
                         </button>
@@ -134,8 +141,10 @@ export default function Habitos(){
                     {habitos.map((habito, index) => {
                         return (
                             <Habito key={index}>
-                                <p>{habito.name}</p>
-                                <span onClick={() => deletarHabito(habito.id)}><ion-icon name="trash-outline"></ion-icon></span>
+                                <Texto>
+                                    <p>{habito.name}</p>
+                                    <span onClick={() => deletarHabito(habito.id)}><ion-icon name="trash-outline"></ion-icon></span>
+                                </Texto>
                                 <Days>
                                     {weekdays.map((day, indexW) => {
                                         const valor = diaDeTarefa(habito.days, indexW);

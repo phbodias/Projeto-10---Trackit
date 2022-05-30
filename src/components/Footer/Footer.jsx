@@ -42,7 +42,7 @@ export default function Footer(){
     }
 
     function feitas(){
-        if (habitosDoDia.length === 0) return setProgresso(0);
+        if (habitosDoDia.length === 0) return;
         let realizadas = 0;
         for (let i = 0; i < habitosDoDia.length; i++){
             if (habitosDoDia[i].done) realizadas++;
@@ -94,6 +94,7 @@ const ProgressBar = styled.div`
 
     .CircularProgressbar-path {
         stroke: #fff;
+        transition: 1s;
     }
     .CircularProgressbar-trail {
         stroke: #52B6FF;

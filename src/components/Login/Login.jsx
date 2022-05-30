@@ -36,7 +36,7 @@ export default function Login(){
             navigate("/habitos");
         });
         promise.catch((error) => {
-            alert(`Erro ao cadastrar: \n\n${error.response.status} - ${error.response.data.message}`);
+            alert(`Erro ao logar: \n\n${error.response.status} - ${error.response.data.message}`);
             setLoading(false);
         }); 
     }
@@ -62,7 +62,7 @@ export default function Login(){
                     desabilitado={loading}
                 />
                 <Button type="submit">
-                    {loading ? <ThreeDots color="#FFF" height={50} width={100} /> : 'Entrar'}
+                    {loading ? <ThreeDots color="#FFF" height={30} width={30} /> : 'Entrar'}
                 </Button>
             </form>
             <StyledLink to="/cadastro">Não possui uma conta? Cadastre-se</StyledLink>

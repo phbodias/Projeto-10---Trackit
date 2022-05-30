@@ -20,7 +20,6 @@ const Style = styled.div`
     z-index: 1;
     position: fixed;
     width: 100vw;
-    min-width: 400px;
     height: 70px;
     left: 0px;
     top: 0px;
@@ -30,7 +29,7 @@ const Style = styled.div`
     align-items: center;
     justify-content: space-between;
     padding-left: 10px;
-    padding-right: 20px;
+    padding-right: 10px;
     box-sizing: border-box;
 
     p{

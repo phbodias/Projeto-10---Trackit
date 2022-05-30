@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const Input = styled.input`
   padding: 18px;
-  background-color: ${({desabilitado}) => desabilitado ? '#f2f2f2' : '#ffffff'};
+  background-color: ${props => props.desabilitado ? '#CFCFCF' : '#ffffff'};
   border: 1px solid #bebebe;
   color: #222222;
   width: 100%;
@@ -54,6 +54,9 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 20.976px;
   line-height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   :hover {
     filter: brightness(1.2);

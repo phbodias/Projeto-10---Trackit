@@ -4,7 +4,7 @@ import UserContext from "../contexts/UserContext"
 import { ProgressProvider } from "../contexts/ProgressContext";
 
 import Login from "./Login/Login";
-import Cadastro from "./Cadastro/Cadastro";
+import Cadastro from "./Login/Cadastro";
 import Habitos from "./Habitos/Habitos";
 import Hoje from "./Hoje/Hoje";
 import Historico from "./Historico/Historico";
@@ -13,11 +13,10 @@ export default function App(){
 
     const [token, setToken] = useState("");
     const [image, setImage] = useState("");
-    const [tarefasFeitas, setTarefasFeitas] = useState("0");
 
     return (
         <ProgressProvider>
-            <UserContext.Provider value={{ token, setToken, image, setImage, tarefasFeitas, setTarefasFeitas }}>
+            <UserContext.Provider value={{ token, setToken, image, setImage }}>
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Login />} />

@@ -2,9 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner'
-
 import logo from '../../assets/logo.png'
-import { Container, Input, Button, StyledLink } from '../Login/LoginStyle';
+import { Container, Input, Button, StyledLink } from './LoginStyle';
 
 export default function Cadastro(){
     const navigate = useNavigate();
@@ -31,10 +30,6 @@ export default function Cadastro(){
             limparInputs();
             setLoading(false);
         });
-        promise.catch((error) => {
-            alert(`Erro ao cadastrar: \n\n${error.response.status} - ${error.response.data.message}`);
-            navigate('/');
-        }); 
     }
 
     function handleInputChange(e) {
@@ -60,7 +55,7 @@ export default function Cadastro(){
                     placeholder="Digite seu email..."
                     value={dados.email}
                     onChange={handleInputChange}
-                    disabled={loading}
+                    desabilitado={loading}
                 />
                 <Input
                     type="password"
@@ -68,7 +63,7 @@ export default function Cadastro(){
                     placeholder="Digite sua senha..."
                     value={dados.password}
                     onChange={handleInputChange}
-                    disabled={loading}
+                    desabilitado={loading}
                 />
                 <Input
                     type="text"
@@ -76,7 +71,7 @@ export default function Cadastro(){
                     placeholder="Digite seu nome..."
                     value={dados.name}
                     onChange={handleInputChange}
-                    disabled={loading}
+                    desabilitado={loading}
                 />
                 <Input
                     type="text"
@@ -84,7 +79,7 @@ export default function Cadastro(){
                     placeholder="URL da sua foto de perfil"
                     value={dados.image}
                     onChange={handleInputChange}
-                    disabled={loading}
+                    desabilitado={loading}
                 />
                 <Button type="submit">
                     {loading ? <ThreeDots color="#FFF" height={50} width={100} /> : 'Entrar'}
