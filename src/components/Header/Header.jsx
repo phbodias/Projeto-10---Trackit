@@ -28,7 +28,10 @@ const Style = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 20px;
+    box-sizing: border-box;
 
     p{
         width: 97px;
@@ -44,7 +47,6 @@ const Style = styled.div`
     img {
         width: 51px;
         height: 51px;
-        margin-left: 51%;
         border-radius: 98.5px;
         object-fit: cover;
     }

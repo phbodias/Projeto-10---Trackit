@@ -32,7 +32,7 @@ const Habito = styled.div`
 
 const Meus = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 91%;
     margin-top: 98px;
@@ -50,7 +50,6 @@ const Meus = styled.div`
     p:last-child{
         width: 40px;
         height: 35px;
-        margin-left: 44%;
         background: #52B6FF;
         border-radius: 4.63636px;
         font-style: normal;
