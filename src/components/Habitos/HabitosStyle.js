@@ -51,7 +51,6 @@ const Meus = styled.div`
     margin-bottom: 20px;
 
     p:first-child{
-        width: 148px;
         height: 29px;
         font-style: normal;
         font-weight: 400;

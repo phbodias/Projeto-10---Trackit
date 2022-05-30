@@ -68,10 +68,6 @@ const Data = styled.div`
         line-height: 29px;
         color: #126BA5;
     }
-
-    h1 {
-        
-    }
 `
 
 const Porcentagem = styled.div`
